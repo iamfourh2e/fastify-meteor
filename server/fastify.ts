@@ -1,10 +1,10 @@
 const fastify = require('fastify')({ logger: true })
-require('../imports/controller/todo_controller')(fastify)
+require('./index')(fastify)
 fastify.register(require('fastify-jwt'), {
     secret: 'supersecret'
 })
 
-fastify.post('/signup', (req: any, reply: any) => {
+fastify.post('/signup', (_req: any, reply: any) => {
     // some code
     const token = fastify.jwt.sign({ name: 'kevinmusk', isAdmin: true })
     reply.send({ token })
